@@ -20,7 +20,7 @@ recursively for all documents under it. It
    corpus to determine the *most specialized words* for that
    document in relation to the corpus, and selects the most
    specialized words as keywords for that document.
-   
+
 You must have read access to all the documents in the
 directory that is classified.
 
@@ -28,9 +28,9 @@ directory that is classified.
 
 Initially classify or reclassify a directory:
 
-```
+<pre>
 $ dokklas --classify
-```
+</pre>
 
 This command scans the directory for all documents
 and classify them.
@@ -39,7 +39,7 @@ and classify them.
 
 Find document classified with key 'network':
 
-```
+<pre>
 $ dokklas 'network'
 network_intro_1.docx     network fundamentals history
 network_intro_2.docx     network fundamentals addresses introduction
@@ -49,63 +49,67 @@ network_ipv4_DHCP.docx   network fundamentals addresses IPv4 LAN private dynamic
 network_ipv6_1.docx      network fundamentals addresses IPv6
 network_ipv6_LAN.docx    network fundamentals addresses IPv6 LAN private
 $
-```
+</pre>
 
 Find a document classified with key 'network' and 'IPv6':
 
-```
+<pre>
 $ dokklas 'network, IPv6'
 network_ipv6_1.docx      network fundamentals addresses IPv6
 network_ipv6_LAN.docx    network fundamentals addresses IPv6 LAN private
 $
-```
+</pre>
 
 Find a document classified with key 'private' and 'IPv4' or 'IPv6':
 
-```
+<pre>
 $ dokklas 'private, (IPv4; IPv6)'
 network_ipv4_LAN.docx    network fundamentals addresses IPv4 LAN private
 network_ipv4_DHCP.docx   network fundamentals addresses IPv4 LAN private dynamicip
 network_ipv6_LAN.docx    network fundamentals addresses IPv6 LAN private
 $ 
-```
+</pre>
 
 ### Assessing a document
 
 You assess a document when you want to classify it manually:
 
-```
+<pre>
 $ dokklas --assess N01_Network_topologies.pptx
 network topology
 $
-```
+</pre>
 
 You can reclassify a document by adding tags:
 
-```
+<pre>
 $ dokklas --amend 'LAN, WAN' N01_Network_topologies.pptx
 $ dokklas --assess N01_Network_topologies.pptx
 LAN WAN network topology
 $ 
-```
+</pre>
 
 or by removing tags using the minus convention:
 
-```
+<pre>
 $ dokklas --amend '!LAN, !WAN' N01_Network_topologies.pptx
 $ dokklas --assess N01_Network_topologies.pptx
 network topology
 $ 
-```
+</pre>
 
 ### Reset a classification
 
 Reset a directory classification:
 
-```
+<pre>
 $ dokklas --reset
-```
+</pre>
 
 Only if the classification is messed up beyond repair!
-The classification is removed and the entire directory 
-is rescanned and classified.
+The classification is removed and you must rescan the
+entire directory using
+
+<pre>
+$ dokklas --classify
+</pre>

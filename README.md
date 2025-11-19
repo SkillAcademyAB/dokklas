@@ -2,6 +2,13 @@
 
 Document classification program. (Vapor so far)
 
+**Note:** this program doesn't do
+["classification"](https://en.wikipedia.org/wiki/Statistical_classification)
+in the Machine Learning sense, it creates key words for
+documents, that can be used in a search, such as if you have
+a large set of documents and want to find the file names of
+specific ones that treat *a specific topic*.
+
 ## (intended) Usage
 
 The program is an (offline) script that scans a directory 

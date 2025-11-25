@@ -1,9 +1,5 @@
 # dokklas
 
-[Main links](mainlinks.md)
-
-## dokklas program
-
 Document classification program. (Vapor so far)
 
 **Note:** this program doesn't do

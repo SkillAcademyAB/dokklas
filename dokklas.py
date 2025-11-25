@@ -1,12 +1,13 @@
 import sys
 import os
+import subprocess as subp
 
 filetypes = {
           '.htm':      ['HTML'],
           '.md':       ['markdown', 'pandoc'],
           '.markdown': ['markdown'],
           '.mkd':      ['markdown'],
-          '.docx':     ['MS word document'],
+          '.docx':     ['MS word document', 'pandoc', '-f', 'docx', '-t', 'plain'],
           '.doc':      ['MS word document'],
           '.pptx':     ['MS powerpoint'],
           '.PPTX':     ['MS powerpoint'],
@@ -20,7 +21,7 @@ filetypes = {
           '.ods':      ['open document spreadsheet'],
           '.odt':      ['open document text'],
           '.ott':      ['open document text template'],
-          '.txt':      ['plain text'],
+          '.txt':      ['plain text', 'cat'],
           '.txx':      ['plain text'],
           '.xt':       ['plain text'],
           '.pdf':      ['portable document format'],
@@ -35,6 +36,18 @@ skip = ['.git',
        ]
 
 _exts = []
+
+def conv(path):
+    fnam, fext = os.path.splitext(path)
+    if fext not in filetypes:
+        print(f'WARNING: unknown file type {fext}, cannot convert {path}, skipping')
+        return None
+    converter = filetypes[fext]
+    if len(converter) < 2:
+        print(f'WARNING: no converter defined for file type {fext}, skipping')
+        return None
+    command = converter[1:] + [path]
+    return subp.Popen(command, stdout=subp.PIPE)
 
 def finddocs(d):
     for e in os.listdir(d):
